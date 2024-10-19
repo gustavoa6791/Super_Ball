@@ -71,5 +71,5 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
 # Library cache temp
-/Library
+/[Ll]ibrary/
 /ProjectSettings/Packages/com.unity.testtools.codecoverage/Settings.json
