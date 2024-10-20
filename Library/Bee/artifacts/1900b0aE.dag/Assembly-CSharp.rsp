@@ -356,12 +356,13 @@
 -analyzer:"C:/Program Files/Unity/Hub/Editor/2022.3.48f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 "Assets/Script/Ball.cs"
 "Assets/Script/Ball_lv3.cs"
-"Assets/Script/Block_collision.cs"
+"Assets/Script/Block_collision_lv3.cs"
 "Assets/Script/Camera.cs"
+"Assets/Script/Goal_com_lv3.cs"
 "Assets/Script/Oponent.cs"
 "Assets/Script/Oponent_lv3.cs"
 "Assets/Script/Player.cs"
-"Assets/Script/Wall_center.cs"
+"Assets/Script/Wall_center_lv3.cs"
 -langversion:9.0
 /deterministic
 /optimize+

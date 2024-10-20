@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - BALL
+  - gol_com
+  - gol_player
   layers:
   - Default
   - TransparentFX

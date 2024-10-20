@@ -61,13 +61,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Script\Oponent.cs" />
+    <Compile Include="Assets\Script\Block_collision_lv3.cs" />
     <Compile Include="Assets\Script\Camera.cs" />
-    <Compile Include="Assets\Script\Wall_center.cs" />
     <Compile Include="Assets\Script\Ball.cs" />
+    <Compile Include="Assets\Script\Goal_com_lv3.cs" />
+    <Compile Include="Assets\Script\Wall_center_lv3.cs" />
     <Compile Include="Assets\Script\Oponent_lv3.cs" />
     <Compile Include="Assets\Script\Player.cs" />
     <Compile Include="Assets\Script\Ball_lv3.cs" />
-    <Compile Include="Assets\Script\Block_collision.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
