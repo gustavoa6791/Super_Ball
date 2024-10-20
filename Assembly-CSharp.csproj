@@ -62,8 +62,11 @@
   <ItemGroup>
     <Compile Include="Assets\Script\Oponent.cs" />
     <Compile Include="Assets\Script\Camera.cs" />
+    <Compile Include="Assets\Script\Wall_center.cs" />
     <Compile Include="Assets\Script\Ball.cs" />
+    <Compile Include="Assets\Script\Oponent_lv3.cs" />
     <Compile Include="Assets\Script\Player.cs" />
+    <Compile Include="Assets\Script\Ball_lv3.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
