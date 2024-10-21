@@ -61,9 +61,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Script\Oponent.cs" />
+    <Compile Include="Assets\Script\Block_collision_lv3.cs" />
     <Compile Include="Assets\Script\Camera.cs" />
     <Compile Include="Assets\Script\Ball.cs" />
+    <Compile Include="Assets\Script\Goal_com_lv3.cs" />
+    <Compile Include="Assets\Script\Wall_center_lv3.cs" />
+    <Compile Include="Assets\Script\Oponent_lv3.cs" />
     <Compile Include="Assets\Script\Player.cs" />
+    <Compile Include="Assets\Script\Ball_lv3.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Stylized Ocean Materials\Shader\Water_Ocean_01.shader" />
+    <None Include="Assets\Stylized Ocean Materials\Shader\Water_Ocean_06.shader" />
+    <None Include="Assets\Stylized Ocean Materials\Shader\Water_Ocean_02.shader" />
+    <None Include="Assets\Stylized Ocean Materials\Shader\Water_Ocean_04.shader" />
+    <None Include="Assets\Stylized Ocean Materials\Shader\Water_Ocean_05.shader" />
+    <None Include="Assets\Stylized Ocean Materials\Shader\Water_Ocean_03.shader" />
+    <None Include="Assets\Stylized Ocean Materials\Shader\Water_Ocean_01_Smooth.shader" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
