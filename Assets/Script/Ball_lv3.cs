@@ -1,80 +1,77 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;  // Necesario si usas UI como Panel o Texto
-using UnityEngine.SceneManagement; // Para reiniciar el juego
+using UnityEngine.UI; // Para manejar la UI
+using UnityEngine.SceneManagement; // Para reiniciar la escena
 
 public class Ball_lv3 : MonoBehaviour
 {
-    public GameObject golComPanel; // Panel UI que se mostrará cuando gol com
-    public GameObject golPlayerPanel; // Panel UI que se mostrará cuando gol player
-    public Text golComText;  // Texto para mostrar en el panel de gol com
-    public Text golPlayerText; // Texto para mostrar en el panel de gol player
-    public int golesCom = 0; // Contador de goles para com
-    public int golesPlayer = 0; // Contador de goles para player
-    public int maxGoles = 3; // Límite de goles para terminar el juego
-    private bool juegoPausado = false; // Para verificar si el juego está pausado
+    public GameObject goalPlayer; // Asigna el objeto Goal_Player desde el editor
+    public GameObject goalCom; // Asigna el objeto Goal_Com desde el editor
+    public Text goalPlayerHitText; // Asigna el componente Text para el Goal_Player desde el Canvas
+    public Text goalComHitText; // Asigna el componente Text para el Goal_Com desde el Canvas
+    public Button continueButton; // Asigna el componente Button desde el Canvas
+    public Canvas canvas; // Asigna el Canvas desde el editor
 
-    // Detectar colisiones
+    private static int goalPlayerHitCount = 0; // Contador de golpes al Goal_Player
+    private static int goalComHitCount = 0; // Contador de golpes al Goal_Com
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        // Ocultamos el Canvas al inicio
+        canvas.gameObject.SetActive(false);
+
+        float[] initial = { -5f, 5f };
+        int Xrandom = (int)Random.Range(0, 1.9f);
+        int Yrandom = (int)Random.Range(0, 1.9f);
+        GetComponent<Rigidbody>().velocity = new Vector3(initial[Xrandom], 0, initial[Yrandom]);
+
+        // Asignamos la función al botón para que oculte el Canvas y reanude el juego
+        continueButton.onClick.AddListener(ResumeGame);
+    }
+
+    // Se ejecuta cuando la bola colisiona con otro objeto
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("BALL"))
+        // Verifica si colisionó con Goal_Player
+        if (collision.gameObject == goalPlayer)
         {
-            if (gameObject.CompareTag("gol_com"))
-            {
-                golesPlayer++;
-                MostrarMensajeGol("Anotaste un gol en gol_com");
-                golComPanel.SetActive(true); // Mostrar panel para gol com
-            }
-            else if (gameObject.CompareTag("gol_player"))
-            {
-                golesCom++;
-                MostrarMensajeGol("Anotaste un gol en gol_player");
-                golPlayerPanel.SetActive(true); // Mostrar panel para gol player
-            }
-            PausarJuego();
+            goalPlayerHitCount++; // Aumenta el contador
+            Debug.Log("Goal_Player ha sido golpeado " + goalPlayerHitCount + " veces."); // Muestra en consola
 
-            // Revisar si el juego ha terminado
-            if (golesCom >= maxGoles || golesPlayer >= maxGoles)
-            {
-                TerminarJuego();
-            }
+            // Mostrar el Canvas, actualizar el texto de Goal_Player y pausar el juego
+            canvas.gameObject.SetActive(true);
+            goalComHitText.text = "Goles del Jugador: " + goalComHitCount; // se refiere a que el enemigo a sido golpeado por el jugador
+            goalPlayerHitText.text = "Goles del Enemigo: " + goalPlayerHitCount; // se refiere a que el jugador a sido golpeado por el enemigo
+            
+            Time.timeScale = 0; // Pausar el juego
+        }
+        // Verifica si colisionó con Goal_Com
+        else if (collision.gameObject == goalCom)
+        {
+            goalComHitCount++; // Aumenta el contador
+            Debug.Log("Goal_Com ha sido golpeado " + goalComHitCount + " veces."); // Muestra en consola
+
+            // Mostrar el Canvas, actualizar el texto de Goal_Com y pausar el juego
+            canvas.gameObject.SetActive(true);
+            goalComHitText.text = "Goles del Jugador: " + goalComHitCount; // se refiere a que el enemigo a sido golpeado por el jugador
+            goalPlayerHitText.text = "Goles del Enemigo: " + goalPlayerHitCount; // se refiere a que el jugador a sido golpeado por el enemigo
+
+            Time.timeScale = 0; // Pausar el juego
         }
     }
 
-    // Mostrar mensaje de gol y pausar el juego
-    void MostrarMensajeGol(string mensaje)
+    // Función para ocultar el Canvas y reanudar el juego
+    void ResumeGame()
     {
-        Debug.Log(mensaje);
-    }
+        // Ocultar el Canvas
+        canvas.gameObject.SetActive(false);
 
-    // Pausar el juego
-    void PausarJuego()
-    {
-        juegoPausado = true;
-        Time.timeScale = 0; // Pausar el tiempo
-    }
+        // Reanudar el juego
+        Time.timeScale = 1;
 
-    // Reanudar el juego
-    public void ReanudarJuego()
-    {
-        juegoPausado = false;
-        Time.timeScale = 1; // Reanudar el tiempo
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); // Reiniciar la escena actual
-    }
-
-    // Terminar el juego
-    void TerminarJuego()
-    {
-        if (golesCom >= maxGoles)
-        {
-            Debug.Log("Juego terminado, ¡ganó gol_com!");
-        }
-        else if (golesPlayer >= maxGoles)
-        {
-            Debug.Log("Juego terminado, ¡ganó gol_player!");
-        }
-
-        // Aquí podrías agregar una pantalla final para el juego o hacer lo que quieras al terminar.
+        // Reinicia la escena sin reiniciar los contadores
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
