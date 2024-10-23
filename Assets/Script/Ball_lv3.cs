@@ -14,6 +14,7 @@ public class Ball_lv3 : MonoBehaviour
     public Button continueButton; // Asigna el componente Button para reanudar el juego
     public Button changeSceneButton; // Asigna el componente Button para cambiar de escena
     public Canvas canvas; // Asigna el Canvas desde el editor
+    public int nextSceneNumber;
 
     private static int goalPlayerHitCount = 0; // Contador de golpes al Goal_Player
     private static int goalComHitCount = 0; // Contador de golpes al Goal_Com
@@ -117,6 +118,6 @@ public class Ball_lv3 : MonoBehaviour
         Time.timeScale = 1;
 
         // Cambia a la escena deseada (cambia "NombreDeLaEscena" por el nombre de la escena a la que deseas ir)
-        SceneManager.LoadScene("SceneMain");
+        SceneManager.LoadScene(nextSceneNumber);
     }
 }
