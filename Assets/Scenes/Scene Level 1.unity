@@ -17422,7 +17422,7 @@ MonoBehaviour:
   continueButton: {fileID: 1833148343}
   changeSceneButton: {fileID: 244946898}
   canvas: {fileID: 150745670}
-  nextSceneNumber: 0
+  nextSceneNumber: 1
 --- !u!4 &1903586955 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c69a9077794d6ed4ebea21ccb4ef357d, type: 3}

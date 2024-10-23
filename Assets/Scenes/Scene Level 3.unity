@@ -2271,7 +2271,7 @@ MonoBehaviour:
   continueButton: {fileID: 1654365175}
   changeSceneButton: {fileID: 1756810380}
   canvas: {fileID: 141388406}
-  nextSceneNumber: 2
+  nextSceneNumber: 0
 --- !u!1 &693750405
 GameObject:
   m_ObjectHideFlags: 0
