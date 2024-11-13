@@ -8,6 +8,10 @@ public class MenuPausa : MonoBehaviour
     [SerializeField] private GameObject botonPausa;
     [SerializeField] private GameObject menuPausa;
     // Start is called before the first frame update
+    private void Start()
+    {
+        Time.timeScale = 1f;
+    }
     private bool juegoPausado = false;
     private void Update()
     {

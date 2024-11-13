@@ -1,39 +1,42 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI; // Para manejar la UI
-using UnityEngine.SceneManagement; // Para cambiar de escena
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Ball_lv3 : MonoBehaviour
 {
-    public GameObject goalPlayer; // Asigna el objeto Goal_Player desde el editor
-    public GameObject goalCom; // Asigna el objeto Goal_Com desde el editor
-    public Text goalPlayerHitText; // Asigna el componente Text para el Goal_Player desde el Canvas
-    public Text goalComHitText; // Asigna el componente Text para el Goal_Com desde el Canvas
-    public Text endGameText; // Asigna el componente Text para mostrar el resultado final
-    public Button continueButton; // Asigna el componente Button para reanudar el juego
-    public Button changeSceneButton; // Asigna el componente Button para cambiar de escena
-    public Canvas canvas; // Asigna el Canvas desde el editor
+    public GameObject goalPlayer;
+    public GameObject goalCom;
+    public Text goalPlayerHitText;
+    public Text goalComHitText;
+    public Text endGameText;
+    public Button continueButton;
+    public Button changeSceneButton;
+    public Canvas canvas;
     public int nextSceneNumber;
 
-    private static int goalPlayerHitCount = 0; // Contador de golpes al Goal_Player
-    private static int goalComHitCount = 0; // Contador de golpes al Goal_Com
+    private int goalPlayerHitCount = 0;
+    private int goalComHitCount = 0;
 
     // Start is called before the first frame update
     void Start()
     {
+        // Aseguramos que el juego comience en tiempo normal
+        Time.timeScale = 1f;
+
         // Ocultamos el Canvas al inicio
         canvas.gameObject.SetActive(false);
-        endGameText.gameObject.SetActive(false); // Oculta el texto del final
-        changeSceneButton.gameObject.SetActive(false); // Oculta el botón para cambiar de escena
+        endGameText.gameObject.SetActive(false);
+        changeSceneButton.gameObject.SetActive(false);
 
-
+        // ConfiguraciÃ³n inicial de la velocidad de la bola
         float[] initial = { -5f, 5f };
-        int Xrandom = (int)Random.Range(0, 1.9f);
-        int Yrandom = (int)Random.Range(0, 1.9f);
+        int Xrandom = Random.Range(0, initial.Length);
+        int Yrandom = Random.Range(0, initial.Length);
         GetComponent<Rigidbody>().velocity = new Vector3(initial[Xrandom], 0, initial[Yrandom]);
 
-        // Asignamos la función al botón para que oculte el Canvas y reanude el juego
+        // Asignamos las funciones a los botones
         continueButton.onClick.AddListener(ResumeGame);
         changeSceneButton.onClick.AddListener(ChangeScene);
     }
@@ -41,83 +44,78 @@ public class Ball_lv3 : MonoBehaviour
     // Se ejecuta cuando la bola colisiona con otro objeto
     private void OnCollisionEnter(Collision collision)
     {
-        // Verifica si colisionó con Goal_Player
         if (collision.gameObject == goalPlayer)
         {
-            goalPlayerHitCount++; // Aumenta el contador
-            Debug.Log("Goal_Player ha sido golpeado " + goalPlayerHitCount + " veces."); // Muestra en consola
+            goalPlayerHitCount++;
+            Debug.Log("Goal_Player ha sido golpeado " + goalPlayerHitCount + " veces.");
 
-            // Mostrar el Canvas, actualizar el texto de Goal_Player y pausar el juego
+            // Actualiza el texto y muestra el Canvas
             ShowCanvas();
-            goalComHitText.text = "Goles del Jugador: " + goalComHitCount; // se refiere a que el enemigo a sido golpeado por el jugador
-            goalPlayerHitText.text = "Goles del Enemigo: " + goalPlayerHitCount; // se refiere a que el jugador a sido golpeado por el enemigo
+            goalComHitText.text = "Goles del Jugador: " + goalComHitCount;
+            goalPlayerHitText.text = "Goles del Enemigo: " + goalPlayerHitCount;
 
             CheckGameOver();
         }
-        // Verifica si colisionó con Goal_Com
         else if (collision.gameObject == goalCom)
         {
-            goalComHitCount++; // Aumenta el contador
-            Debug.Log("Goal_Com ha sido golpeado " + goalComHitCount + " veces."); // Muestra en consola
+            goalComHitCount++;
+            Debug.Log("Goal_Com ha sido golpeado " + goalComHitCount + " veces.");
 
-            // Mostrar el Canvas, actualizar el texto de Goal_Com y pausar el juego
+            // Actualiza el texto y muestra el Canvas
             ShowCanvas();
-            goalComHitText.text = "Goles del Jugador: " + goalComHitCount; // se refiere a que el enemigo a sido golpeado por el jugador
-            goalPlayerHitText.text = "Goles del Enemigo: " + goalPlayerHitCount; // se refiere a que el jugador a sido golpeado por el enemigo
+            goalComHitText.text = "Goles del Jugador: " + goalComHitCount;
+            goalPlayerHitText.text = "Goles del Enemigo: " + goalPlayerHitCount;
 
             CheckGameOver();
         }
     }
 
-    // Función para mostrar el Canvas y pausar el juego
+    // Muestra el Canvas y pausa el juego
     void ShowCanvas()
     {
         canvas.gameObject.SetActive(true);
-        Time.timeScale = 0; // Pausar el juego
+        Time.timeScale = 0f; // Pausa el juego
     }
 
-    // Verifica si alguno de los contadores ha llegado a 3
+    // Verifica si el juego ha terminado
     void CheckGameOver()
     {
         if (goalPlayerHitCount >= 3 || goalComHitCount >= 3)
         {
-            // Mostrar el mensaje de fin de juego
             endGameText.gameObject.SetActive(true);
-            endGameText.text = (goalPlayerHitCount >= 3) ?
-                "¡El Enemigo ha ganado!":"¡El Jugador ha ganado!";
+            endGameText.text = (goalPlayerHitCount >= 3) ? "Â¡El Enemigo ha ganado!" : "Â¡El Jugador ha ganado!";
 
-            // Mostrar el botón para cambiar de escena
+            // Muestra el botÃ³n para cambiar de escena y oculta otros elementos
             changeSceneButton.gameObject.SetActive(true);
-            // Oculta los textos de count y le boton de continuar
-            goalPlayerHitText.gameObject.SetActive(false); // Oculta el texto del final
-            goalComHitText.gameObject.SetActive(false); // Oculta el texto del final
-            continueButton.gameObject.SetActive(false); // Oculta el botón para cambiar de escena
+            goalPlayerHitText.gameObject.SetActive(false);
+            goalComHitText.gameObject.SetActive(false);
+            continueButton.gameObject.SetActive(false);
         }
     }
 
-    // Función para ocultar el Canvas y reanudar el juego
+    // Reanuda el juego y reinicia los contadores
     void ResumeGame()
     {
-        // Ocultar el Canvas
+        // Oculta el Canvas
         canvas.gameObject.SetActive(false);
 
-        // Reanudar el juego
-        Time.timeScale = 1;
+        // Reinicia el juego
+        goalPlayerHitCount = 0;
+        goalComHitCount = 0;
+        Time.timeScale = 1f;
 
-        // Reinicia la escena sin reiniciar los contadores
+        // Reinicia la escena
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    // Función para cambiar de escena
+    // Cambia a la siguiente escena
     void ChangeScene()
     {
-        // Ocultar el Canvas
+        // Oculta el Canvas y reanuda el tiempo antes de cambiar de escena
         canvas.gameObject.SetActive(false);
+        Time.timeScale = 1f;
 
-        // Reanudar el juego
-        Time.timeScale = 1;
-
-        // Cambia a la escena deseada (cambia "NombreDeLaEscena" por el nombre de la escena a la que deseas ir)
+        // Cambia a la escena especificada
         SceneManager.LoadScene(nextSceneNumber);
     }
 }
