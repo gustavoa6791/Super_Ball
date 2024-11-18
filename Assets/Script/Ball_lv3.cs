@@ -13,17 +13,19 @@ public class Ball_lv3 : MonoBehaviour
     public Text endGameText;
     public Button continueButton;
     public Button changeSceneButton;
+    public Button restartSceneButton;
+    public Button menuSceneButton;
     public Canvas canvas;
     public int nextSceneNumber;
 
-    private int goalPlayerHitCount = 0;
-    private int goalComHitCount = 0;
+    private static int goalPlayerHitCount = 0;
+    private static int goalComHitCount = 0;
 
     // Start is called before the first frame update
     void Start()
     {
         // Aseguramos que el juego comience en tiempo normal
-        Time.timeScale = 1f;
+        //Time.timeScale = 1f;
 
         // Ocultamos el Canvas al inicio
         canvas.gameObject.SetActive(false);
@@ -32,13 +34,15 @@ public class Ball_lv3 : MonoBehaviour
 
         // Configuración inicial de la velocidad de la bola
         float[] initial = { -5f, 5f };
-        int Xrandom = Random.Range(0, initial.Length);
-        int Yrandom = Random.Range(0, initial.Length);
+        int Xrandom = (int)Random.Range(0, 1.9f);
+        int Yrandom = (int)Random.Range(0, 1.9f);
         GetComponent<Rigidbody>().velocity = new Vector3(initial[Xrandom], 0, initial[Yrandom]);
 
         // Asignamos las funciones a los botones
         continueButton.onClick.AddListener(ResumeGame);
         changeSceneButton.onClick.AddListener(ChangeScene);
+        restartSceneButton.onClick.AddListener(RestartScene);
+        menuSceneButton.onClick.AddListener(MenuScene);
     }
 
     // Se ejecuta cuando la bola colisiona con otro objeto
@@ -74,7 +78,7 @@ public class Ball_lv3 : MonoBehaviour
     void ShowCanvas()
     {
         canvas.gameObject.SetActive(true);
-        Time.timeScale = 0f; // Pausa el juego
+        Time.timeScale = 0; // Pausa el juego
     }
 
     // Verifica si el juego ha terminado
@@ -100,9 +104,9 @@ public class Ball_lv3 : MonoBehaviour
         canvas.gameObject.SetActive(false);
 
         // Reinicia el juego
-        goalPlayerHitCount = 0;
-        goalComHitCount = 0;
-        Time.timeScale = 1f;
+        //goalPlayerHitCount = 0;
+        //goalComHitCount = 0;
+        Time.timeScale = 1;
 
         // Reinicia la escena
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -113,9 +117,42 @@ public class Ball_lv3 : MonoBehaviour
     {
         // Oculta el Canvas y reanuda el tiempo antes de cambiar de escena
         canvas.gameObject.SetActive(false);
-        Time.timeScale = 1f;
+        Time.timeScale = 1;
+        // Reinicia el juego
+        goalPlayerHitCount = 0;
+        goalComHitCount = 0;
 
         // Cambia a la escena especificada
         SceneManager.LoadScene(nextSceneNumber);
+    }
+
+    // Reiniciar escena
+    void RestartScene()
+    {
+        // Oculta el Canvas
+        canvas.gameObject.SetActive(false);
+
+        // Reinicia el juego
+        goalPlayerHitCount = 0;
+        goalComHitCount = 0;
+        Time.timeScale = 1;
+
+        // Reinicia la escena
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    // Reiniciar escena
+    void MenuScene()
+    {
+        // Oculta el Canvas
+        canvas.gameObject.SetActive(false);
+
+        // Reinicia el juego
+        goalPlayerHitCount = 0;
+        goalComHitCount = 0;
+        Time.timeScale = 1;
+
+        // Reinicia la escena
+        SceneManager.LoadScene("Menu");
     }
 }
