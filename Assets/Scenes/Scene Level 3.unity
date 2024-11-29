@@ -2257,6 +2257,9 @@ PrefabInstance:
       addedObject: {fileID: 1675743526}
     - targetCorrespondingSourceObject: {fileID: 8021814541445841665, guid: a5f8138fc85253d438f13ba26c999313, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 1675743536}
+    - targetCorrespondingSourceObject: {fileID: 8021814541445841665, guid: a5f8138fc85253d438f13ba26c999313, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 1675743532}
     - targetCorrespondingSourceObject: {fileID: 8021814541445841665, guid: a5f8138fc85253d438f13ba26c999313, type: 3}
       insertIndex: -1
@@ -3016,7 +3019,7 @@ MonoBehaviour:
   restartSceneButton: {fileID: 1829228923}
   menuSceneButton: {fileID: 270297817}
   canvas: {fileID: 141388406}
-  nextSceneNumber: 0
+  nextSceneNumber: 4
 --- !u!1 &696212734
 GameObject:
   m_ObjectHideFlags: 0
@@ -6976,7 +6979,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1675743524}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 51eef0e174423a04c95c0c731987d357, type: 3}
   m_Name: 
@@ -7077,6 +7080,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3, y: 1.6000001, z: 0.1}
   m_Center: {x: 0, y: 1, z: 2}
+--- !u!114 &1675743536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1675743524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff1777bba43148e44a5f9d2ab2ef6f78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SPEED: 0.2
+  ROTATION: 1
+  FORCE: 20
+  animator: {fileID: 1675743532}
 --- !u!4 &1679819356 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 83984a12a3d399f4e9c0c11742ee3173, type: 3}
