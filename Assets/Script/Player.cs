@@ -56,14 +56,30 @@ public class Player : MonoBehaviour
         }
     }
 
+    // custom gustavo 
 
-    private void OnTriggerEnter(Collider other)
+    /* private void OnTriggerEnter(Collider other)
     {
         Vector3 target = new Vector3(0, 0, 10);
 
-        if (other.CompareTag("BALL")  ) {
+        if (other.CompareTag("BALL"))
+        {
             Vector3 direction = target - transform.position;
-            other.GetComponent<Rigidbody>().velocity = direction.normalized * FORCE ;
+            other.GetComponent<Rigidbody>().velocity = direction.normalized * FORCE;
         };
+    }*/
+
+    // custom sebas
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("BALL"))
+        {
+            // Genera una dirección aleatoria hacia adelante
+            Vector3 randomDirection = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(0f, 1f)).normalized;
+
+            // Aplica la dirección aleatoria multiplicada por la fuerza
+            other.GetComponent<Rigidbody>().velocity = randomDirection * FORCE;
+        }
     }
+
 }
