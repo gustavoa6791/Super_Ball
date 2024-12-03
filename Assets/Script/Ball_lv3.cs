@@ -10,6 +10,8 @@ public class Ball_lv3 : MonoBehaviour
     public GameObject goalCom;
     public Text goalPlayerHitText;
     public Text goalComHitText;
+    public Text currentGoalPlayer;
+    public Text currentGoalCom;
     public Text endGameText;
     public Button continueButton;
     public Button changeSceneButton;
@@ -45,8 +47,15 @@ public class Ball_lv3 : MonoBehaviour
         menuSceneButton.onClick.AddListener(MenuScene);
     }
 
-    // Se ejecuta cuando la bola colisiona con otro objeto
-    private void OnCollisionEnter(Collision collision)
+    void Update()
+    {
+        currentGoalPlayer.text = "JUGADOR: " + goalComHitCount;
+        currentGoalCom.text = "ENEMIGO: " + goalPlayerHitCount;
+
+    }
+
+        // Se ejecuta cuando la bola colisiona con otro objeto
+        private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject == goalPlayer)
         {
@@ -67,8 +76,8 @@ public class Ball_lv3 : MonoBehaviour
 
             // Actualiza el texto y muestra el Canvas
             ShowCanvas();
-            goalComHitText.text = "Goles del Jugador: " + goalComHitCount;
-            goalPlayerHitText.text = "Goles del Enemigo: " + goalPlayerHitCount;
+            goalComHitText.text = currentGoalPlayer.text = "Goles del Jugador: " + goalComHitCount;
+            goalPlayerHitText.text = currentGoalCom.text = "Goles del Enemigo: " + goalPlayerHitCount;
 
             CheckGameOver();
         }
