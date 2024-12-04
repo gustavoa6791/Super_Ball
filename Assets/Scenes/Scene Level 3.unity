@@ -1571,7 +1571,8 @@ PrefabInstance:
       value: Reanudar
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 2645136333109870530, guid: 1634613fc8fafc44cbf909a2986d8ea3, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1634613fc8fafc44cbf909a2986d8ea3, type: 3}
@@ -6715,10 +6716,10 @@ RectTransform:
   - {fileID: 208923279}
   m_Father: {fileID: 724636388}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.6818876}
-  m_AnchorMax: {x: 0.97, y: 0.9546569}
-  m_AnchoredPosition: {x: -0.375, y: -2.0625}
-  m_SizeDelta: {x: 859, y: 303.83}
+  m_AnchorMin: {x: 0.5, y: 0.795}
+  m_AnchorMax: {x: 0.80200005, y: 0.97400004}
+  m_AnchoredPosition: {x: 1.5999985, y: 0.80000305}
+  m_SizeDelta: {x: 952, y: 332.83}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1522877511
 MonoBehaviour:

@@ -17876,10 +17876,10 @@ RectTransform:
   - {fileID: 172679416}
   m_Father: {fileID: 48535216}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.6818876}
-  m_AnchorMax: {x: 0.97, y: 0.9546569}
-  m_AnchoredPosition: {x: -0.375, y: -2.0625}
-  m_SizeDelta: {x: 859, y: 303.83}
+  m_AnchorMin: {x: 0.41855538, y: 0.80767745}
+  m_AnchorMax: {x: 0.7253702, y: 0.97400004}
+  m_AnchoredPosition: {x: -0.19999695, y: 0.40000153}
+  m_SizeDelta: {x: 949, y: 336.83}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1980441286
 MonoBehaviour:
@@ -19521,7 +19521,8 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1562855243}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 2645136333109870530, guid: 1634613fc8fafc44cbf909a2986d8ea3, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1634613fc8fafc44cbf909a2986d8ea3, type: 3}
